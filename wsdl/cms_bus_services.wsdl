@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/cms_bus_services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="cms_bus_services" targetNamespace="http://www.example.org/cms_bus_services/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/cms_bus_services/">
+      <xsd:element name="persistContent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="persistContentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element name="ContentType" type="xsd:string"></xsd:element>
+            <xsd:element name="ContentReturnType" type="xsd:string"></xsd:element>
+            <xsd:element name="ContentRequestType" type="xsd:string"></xsd:element>
+            <xsd:element name="ContentRequestElement"
+            	type="tns:ContentType">
+            </xsd:element>
+            <xsd:element name="ContentReturnElement"
+            	type="tns:ContentReturnType">
+            </xsd:element>
+            
+            <xsd:complexType name="ContentType">
+            	<xsd:sequence>
+            		<xsd:element name="title" type="xsd:string"></xsd:element>
+            		<xsd:element name="content" type="xsd:string"></xsd:element>
+            		<xsd:element name="release_date"
+            			type="xsd:dateTime">
+            		</xsd:element>
+            		<xsd:element name="attachment"
+            			type="xsd:hexBinary">
+            		</xsd:element>
+            		<xsd:element name="session_id" type="xsd:string"></xsd:element>
+            		<xsd:element name="create_time" type="xsd:dateTime"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="ContentReturnType">
+            	<xsd:sequence>
+            		<xsd:element name="status" type="xsd:string"></xsd:element>
+            		<xsd:element name="msg" type="xsd:string"></xsd:element>
+            		<xsd:element name="reply_time" type="xsd:string"></xsd:element>
+            		<xsd:element name="session_id" type="xsd:string"></xsd:element>
+            		<xsd:element name="exception" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="saveWsContent">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="saveWsContentResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="WsContentRequestElement"
+            	type="tns:WsContentRequestType">
+            </xsd:element>
+            <xsd:element name="WsContentResponseElement"
+            	type="tns:WsContentResponseType">
+            </xsd:element>
+            
+            
+        
+        
+    
+            <xsd:complexType name="WsContentRequestType">
+            	<xsd:sequence>
+            		<xsd:element name="title" type="xsd:string"></xsd:element>
+            		<xsd:element name="channel_name"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="content" type="xsd:string"></xsd:element>
+            		<xsd:element name="release_date" type="xsd:date"></xsd:element>
+            		<xsd:element name="attachments"
+            			type="tns:AttachmentType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="AttachmentType">
+            	<xsd:sequence>
+            		<xsd:element name="file_name" type="xsd:string"></xsd:element>
+            		<xsd:element name="file_type" type="xsd:string" nillable="true"></xsd:element>
+            		<xsd:element name="file_size" type="xsd:string" nillable="true"></xsd:element>
+            		<xsd:element name="file_binary" type="xsd:hexBinary"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="wsSave">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="wsSaveResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="WsContentResponseType">
+            	<xsd:sequence>
+            		<xsd:element name="status" type="xsd:string"></xsd:element>
+            		<xsd:element name="msg" type="xsd:string" nillable="true"></xsd:element>
+            		<xsd:element name="err_code" type="xsd:int" nillable="true"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="persistContentRequest">
+    <wsdl:part element="tns:ContentRequestElement" name="request" />
+  </wsdl:message>
+  <wsdl:message name="persistContentResponse">
+    <wsdl:part element="tns:ContentReturnElement" name="response" />
+  </wsdl:message>
+  <wsdl:message name="saveWsContentRequest">
+  	<wsdl:part name="parameters"
+  		element="tns:WsContentRequestElement">
+  	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveWsContentResponse">
+  	<wsdl:part name="parameters"
+  		element="tns:WsContentResponseElement">
+  	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="wsSaveRequest">
+  	<wsdl:part name="parameters"
+  		element="tns:WsContentRequestElement">
+  	</wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="wsSaveResponse">
+  	<wsdl:part name="parameters"
+  		element="tns:WsContentResponseElement">
+  	</wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="cms_bus_services">
+    <wsdl:operation name="persistContent">
+      <wsdl:input message="tns:persistContentRequest"/>
+      <wsdl:output message="tns:persistContentResponse"/>
+    </wsdl:operation>    <wsdl:operation name="wsSave">    	<wsdl:input message="tns:wsSaveRequest"></wsdl:input>    	<wsdl:output message="tns:wsSaveResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="cms_bus_servicesBinding" type="tns:cms_bus_services">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="persistContent">
+      <soap:operation soapAction="http://www.example.org/cms_bus_services/persistContent"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+     <wsdl:operation name="wsSave">
+      <soap:operation soapAction="http://www.example.org/cms_bus_services/wsSave"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="cms_bus_services">
+    <wsdl:port binding="tns:cms_bus_servicesBinding" name="cms_bus_servicesPort">
+      <soap:address location="http://www.juyun.com/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

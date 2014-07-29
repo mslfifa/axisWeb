@@ -1,0 +1,66 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from cms_bus_services WSDL service -->
+
+  <service name="cms_bus_servicesPort" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://www.example.org/cms_bus_services/"/>
+      <parameter name="wsdlServiceElement" value="cms_bus_services"/>
+      <parameter name="schemaUnqualified" value="http://www.example.org/cms_bus_services/"/>
+      <parameter name="wsdlServicePort" value="cms_bus_servicesPort"/>
+      <parameter name="className" value="com.juyun.webservice.cms.visit.server.Cms_bus_servicesBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="cms_bus_services"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://www.example.org/cms_bus_services/"
+        qname="ns:WsContentResponseType"
+        type="java:com.juyun.webservice.cms.visit.server.WsContentResponseType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/cms_bus_services/"
+        qname="ns:AttachmentType"
+        type="java:com.juyun.webservice.cms.visit.server.AttachmentType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/cms_bus_services/"
+        qname="ns:ContentType"
+        type="java:com.juyun.webservice.cms.visit.server.ContentType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/cms_bus_services/"
+        qname="ns:ContentReturnType"
+        type="java:com.juyun.webservice.cms.visit.server.ContentReturnType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/cms_bus_services/"
+        qname="ns:WsContentRequestType"
+        type="java:com.juyun.webservice.cms.visit.server.WsContentRequestType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
